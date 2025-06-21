@@ -1,0 +1,26 @@
+<h2>Add New Book</h2>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <label>
+    Title:
+    <input type="text" formControlName="title" />
+  </label>
+
+  <label>
+    Author:
+    <input type="text" formControlName="author" />
+  </label>
+
+  <label>
+    Year:
+    <input type="number" formControlName="year" />
+  </label>
+
+  <label>
+    Genre:
+    <input type="text" formControlName="genre" />
+  </label>
+
+  <button type="submit" [disabled]="form.invalid">Add Book</button>
+  <button type="button" (click)="back()">Cancel</button>
+</form>

@@ -12,12 +12,12 @@
       <p><strong>Genre:</strong> {{ book.genre }}</p>
     </div>
     <div class="book-actions">
-      <button (click)="toDetail(book.id)" > Detail </button>
-      <button> Delete</button>
+      <button (click)="toDetail(book.id)">Detail</button>
+      <button (click)="deleteBook(book.id)">Delete</button>
     </div>
   </div>
 </div>
+<br />
+<button (click)="router.navigate(['/library/add'])">+ Add Book</button>
 
-<div *ngIf="!loading && !books.length">
-  No books found.
-</div>
+<div *ngIf="!loading && !books.length">No books found.</div>

@@ -10,7 +10,7 @@ import { IBookService } from '../../../core/services/book.service.interface';
   selector: 'app-book-detail',
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './book-detail.html',
-  styleUrls: ['./book-detail.scss']
+  styleUrls: ['./book-detail.scss'],
 })
 export class BookDetail implements OnInit {
   book!: IBook;
@@ -27,7 +27,7 @@ export class BookDetail implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const id = +this.route.snapshot.paramMap.get('id')!;
+    const id = this.route.snapshot.paramMap.get('id')!;
     this.bookService.getBook(id).subscribe({
       next: (book: IBook) => {
         this.book = book;
@@ -35,14 +35,14 @@ export class BookDetail implements OnInit {
           title: [book.title, Validators.required],
           author: [book.author, Validators.required],
           year: [book.year, Validators.required],
-          genre: [book.genre, Validators.required]
+          genre: [book.genre, Validators.required],
         });
         this.loading = false;
       },
       error: () => {
         this.error = 'Failed to load book';
         this.loading = false;
-      }
+      },
     });
   }
 
@@ -51,8 +51,8 @@ export class BookDetail implements OnInit {
   }
 
   goBack(): void {
-  this.router.navigate(['/library']);
-}
+    this.router.navigate(['/library']);
+  }
 
   onSubmit(): void {
     if (this.form.valid) {

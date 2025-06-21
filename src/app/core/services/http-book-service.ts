@@ -4,7 +4,9 @@ import { Observable } from 'rxjs';
 import { IBookService } from './book.service.interface';
 import { IBook } from '../models/book.model';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class HttpBookService implements IBookService {
   private baseUrl = 'http://localhost:3000/books'; // json-server
 
@@ -14,7 +16,7 @@ export class HttpBookService implements IBookService {
     return this.http.get<IBook[]>(this.baseUrl);
   }
 
-  getBook(id: number): Observable<IBook> {
+  getBook(id: string): Observable<IBook> {
     return this.http.get<IBook>(`${this.baseUrl}/${id}`);
   }
 
@@ -26,7 +28,7 @@ export class HttpBookService implements IBookService {
     return this.http.put<IBook>(`${this.baseUrl}/${book.id}`, book);
   }
 
-  deleteBook(id: number): Observable<void> {
+  deleteBook(id: string): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/${id}`);
   }
 }
