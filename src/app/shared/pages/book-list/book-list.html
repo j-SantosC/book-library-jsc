@@ -1,0 +1,23 @@
+<h2>Book Library JSC</h2>
+
+<div *ngIf="loading">Loading books...</div>
+<div *ngIf="error">{{ error }}</div>
+
+<div *ngIf="!loading && books.length" class="book-list">
+  <div class="book-card" *ngFor="let book of books">
+    <div class="book-info">
+      <h3>{{ book.title }}</h3>
+      <p><strong>Author:</strong> {{ book.author }}</p>
+      <p><strong>Year:</strong> {{ book.year }}</p>
+      <p><strong>Genre:</strong> {{ book.genre }}</p>
+    </div>
+    <div class="book-actions">
+      <button (click)="toDetail(book.id)" > Detail </button>
+      <button> Delete</button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!loading && !books.length">
+  No books found.
+</div>

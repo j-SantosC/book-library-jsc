@@ -1,0 +1,40 @@
+<h2>Book Detail</h2>
+
+<button (click)="goBack()"> Back to list</button>
+
+<div *ngIf="loading">Loading...</div>
+<div *ngIf="error">{{ error }}</div>
+
+<div *ngIf="!editing && !loading">
+  <p><strong>Title:</strong> {{ book.title }}</p>
+  <p><strong>Author:</strong> {{ book.author }}</p>
+  <p><strong>Year:</strong> {{ book.year }}</p>
+  <p><strong>Genre:</strong> {{ book.genre }}</p>
+
+  <button (click)="toggleEdit()">Edit</button>
+</div>
+
+<form *ngIf="editing" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <label>
+    Title:
+    <input type="text" formControlName="title" />
+  </label>
+
+  <label>
+    Author:
+    <input type="text" formControlName="author" />
+  </label>
+
+  <label>
+    Year:
+    <input type="number" formControlName="year" />
+  </label>
+
+  <label>
+    Genre:
+    <input type="text" formControlName="genre" />
+  </label>
+
+  <button type="submit" [disabled]="form.invalid"> Save</button>
+  <button type="button" (click)="toggleEdit()"> Cancel</button>
+</form>
