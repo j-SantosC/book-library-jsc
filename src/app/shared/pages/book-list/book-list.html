@@ -5,18 +5,22 @@
 
 <div *ngIf="!loading && books.length" class="book-list">
   <div class="book-card" *ngFor="let book of books">
+    <img class="book-cover" src="images/book.webp" alt="Book cover" />
+
     <div class="book-info">
       <h3>{{ book.title }}</h3>
       <p><strong>Author:</strong> {{ book.author }}</p>
       <p><strong>Year:</strong> {{ book.year }}</p>
       <p><strong>Genre:</strong> {{ book.genre }}</p>
     </div>
+
     <div class="book-actions">
       <button (click)="toDetail(book.id)">Detail</button>
       <button (click)="deleteBook(book.id)">Delete</button>
     </div>
   </div>
 </div>
+
 <br />
 <button (click)="router.navigate(['/library/add'])">+ Add Book</button>
 

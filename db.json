@@ -1,18 +1,11 @@
 {
   "books": [
     {
-      "title": "198444",
-      "author": "George Orwell",
-      "year": 1949,
-      "genre": "Horror",
-      "id": "1"
-    },
-    {
-      "id": "3",
       "title": "The Hobbit",
       "author": "J.R.R. Tolkien",
       "year": 1937,
-      "genre": "Fantasy"
+      "genre": "Fantasy Great",
+      "id": "3"
     },
     {
       "id": "4",

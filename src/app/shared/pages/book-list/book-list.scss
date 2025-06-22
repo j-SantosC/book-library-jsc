@@ -15,10 +15,23 @@
   background-color: #fdfdfd;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
   transition: box-shadow 0.2s ease;
+  gap: 1rem;
 }
 
 .book-card:hover {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.book-cover {
+  width: 80px;
+  height: 100px;
+  object-fit: contain;
+  border-radius: 4px;
+  margin-right: 2rem;
+}
+
+.book-info {
+  flex: 1;
 }
 
 .book-info h3 {

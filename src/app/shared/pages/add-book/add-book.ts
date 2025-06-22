@@ -1,10 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { Inject } from '@angular/core';
-import { HttpBookService } from '../../../core/services/http-book-service';
+import { IBookService } from '../../../core/services/book.service.interface';
 import { IBook } from '../../../core/models/book.model';
 
 @Component({
@@ -12,21 +11,18 @@ import { IBook } from '../../../core/models/book.model';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './add-book.html',
-  styleUrls: ['./add-book.scss']
+  styleUrls: ['./add-book.scss'],
 })
 export class AddBook {
   form: FormGroup;
+  private bookService = inject(IBookService);
 
-  constructor(
-    private fb: FormBuilder,
-    private router: Router,
-    private bookService: HttpBookService
-  ) {
+  constructor(private fb: FormBuilder, private router: Router) {
     this.form = this.fb.group({
       title: ['', Validators.required],
       author: ['', Validators.required],
       year: ['', [Validators.required, Validators.min(0)]],
-      genre: ['', Validators.required]
+      genre: ['', Validators.required],
     });
   }
 
@@ -39,6 +35,8 @@ export class AddBook {
       });
     }
   }
-  back(){}
 
+  back() {
+    this.router.navigate(['/library']);
+  }
 }
