@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BookList } from '../shared/pages/book-list/book-list';
-import { BookDetail } from '../shared/pages/book-detail/book-detail';
-import { AddBook } from '../shared/pages/add-book/add-book';
+import { BookList } from './pages/book-list/book-list';
+import { BookDetail } from './pages/book-detail/book-detail';
+import { AddBook } from './pages/add-book/add-book';
 import { BookResolver } from '../core/resolvers/book.resolver';
 
 const routes: Routes = [

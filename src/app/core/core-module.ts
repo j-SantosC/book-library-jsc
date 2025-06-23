@@ -7,7 +7,9 @@ import { InMemoryBookService } from './services/in-memory-book-service';
 @NgModule({
   declarations: [],
   imports: [CommonModule],
+  // Use HTTP (with json-server)
   providers: [{ provide: IBookService, useClass: HttpBookService }],
+  // Use in-memory (local data)
   // providers: [{ provide: IBookService, useClass: InMemoryBookService }],
 })
 export class CoreModule {

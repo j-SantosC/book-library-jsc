@@ -4,6 +4,7 @@ import { Router, RouterModule } from '@angular/router';
 import { IBook } from '../../../core/models/book.model';
 import { IBookService } from '../../../core/services/book.service.interface';
 import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-book-list',
@@ -16,7 +17,7 @@ export class BookList {
   books$: Observable<IBook[]>;
   error = '';
 
-  constructor(private bookService: IBookService, public router: Router) {
+  constructor(private bookService: IBookService, public router: Router, private http: HttpClient) {
     this.books$ = this.bookService.getBooks();
   }
 
@@ -36,5 +37,9 @@ export class BookList {
         },
       });
     }
+  }
+
+  triggerError() {
+    this.http.get('http://localhost:3000/non-existent-endpoint').subscribe();
   }
 }

@@ -1,59 +1,71 @@
-# BookLibraryJsc
+# Book Library JSC 
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.0.3.
+This is a simple **Book Library** application built with Angular 20. It allows users to list, add, edit, and delete books.
 
-## Development server
+## Features
 
-To start a local development server, run:
+- Lazy-loaded `/library` route.
+- Reactive forms for adding/editing books.
+- Two interchangeable data services (HTTP & in-memory).
+- Route resolver for preloading book data.
+- Global error handling with an HTTP interceptor.
+- Clean architecture with CoreModule and shared services.
 
+---
+
+## Getting Started
+
+### 1. Install Dependencies
+
+```bash
+npm install
+```
+
+### 2. Run the Angular App
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+This will start the app on http://localhost:4200.
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+### 3. Run the JSON Server (Mock API)
+This project uses json-server to simulate a REST API.
 
 ```bash
-ng generate --help
+npm run api
 ```
 
-## Building
+This starts the mock API at http://localhost:3000/books.
 
-To build the project run:
+Ensure that db.json is present in the root of the project.
 
-```bash
-ng build
+## Switching Between Services
+The app supports two interchangeable services via Angular's dependency injection:
+
+HttpBookService: Connects to the mock REST API.
+
+InMemoryBookService: Uses a local in-memory array.
+
+To switch between them, go to:
+
+src/app/core/core.module.ts
+
+And comment/uncomment the desired line inside the providers array:
+
+```ts
+// Use HTTP (with json-server)
+providers: [{ provide: IBookService, useClass: HttpBookService }],
+// Use in-memory (local data)
+// providers: [{ provide: IBookService, useClass: InMemoryBookService }],
 ```
+After changing, restart the Angular server.
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## Testing
+This project does not include unit tests, but the architecture supports adding Jasmine/Karma tests for services and components.
 
-## Running unit tests
+## Additional Notes
+Error handling is implemented via a global HTTP interceptor.
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+Logs are handled through a custom LoggerService.
 
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Book details are loaded via a route resolver before showing the BookDetailComponent.
