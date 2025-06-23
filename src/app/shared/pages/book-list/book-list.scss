@@ -5,6 +5,10 @@
   margin-top: 1rem;
 }
 
+.header {
+  margin-top: 0;
+}
+
 .book-card {
   display: flex;
   justify-content: space-between;
@@ -65,4 +69,8 @@ button:last-child {
 
 button:last-child:hover {
   background-color: #b71c1c;
+}
+
+.add {
+  background-color: green !important;
 }

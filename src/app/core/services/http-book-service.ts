@@ -4,9 +4,7 @@ import { Observable } from 'rxjs';
 import { IBookService } from './book.service.interface';
 import { IBook } from '../models/book.model';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class HttpBookService implements IBookService {
   private baseUrl = 'http://localhost:3000/books'; // json-server
 

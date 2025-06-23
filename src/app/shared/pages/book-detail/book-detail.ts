@@ -16,8 +16,6 @@ export class BookDetail implements OnInit {
   book!: IBook;
   form!: FormGroup;
   editing = false;
-  loading = true;
-  error = '';
 
   constructor(
     private fb: FormBuilder,
@@ -27,22 +25,13 @@ export class BookDetail implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id')!;
-    this.bookService.getBook(id).subscribe({
-      next: (book: IBook) => {
-        this.book = book;
-        this.form = this.fb.group({
-          title: [book.title, Validators.required],
-          author: [book.author, Validators.required],
-          year: [book.year, Validators.required],
-          genre: [book.genre, Validators.required],
-        });
-        this.loading = false;
-      },
-      error: () => {
-        this.error = 'Failed to load book';
-        this.loading = false;
-      },
+    this.book = this.route.snapshot.data['book'];
+
+    this.form = this.fb.group({
+      title: [this.book.title, Validators.required],
+      author: [this.book.author, Validators.required],
+      year: [this.book.year, Validators.required],
+      genre: [this.book.genre, Validators.required],
     });
   }
 
@@ -57,10 +46,16 @@ export class BookDetail implements OnInit {
   onSubmit(): void {
     if (this.form.valid) {
       const updatedBook: IBook = { ...this.form.value, id: this.book.id };
-      this.bookService.updateBook(updatedBook).subscribe(() => {
-        this.book = updatedBook;
-        this.editing = false;
-        alert('Book updated!');
+
+      this.bookService.updateBook(updatedBook).subscribe({
+        next: () => {
+          alert('Book updated!');
+          this.book = updatedBook;
+          this.editing = false;
+        },
+        error: () => {
+          alert('Error updating book');
+        },
       });
     }
   }

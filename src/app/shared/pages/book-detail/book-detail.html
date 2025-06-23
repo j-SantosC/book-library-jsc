@@ -1,11 +1,9 @@
-<h2>Book Detail</h2>
+<h2 class="header">Book Detail</h2>
 
-<button (click)="goBack()"> Back to list</button>
+<button (click)="goBack()">Back to list</button>
 
-<div *ngIf="loading">Loading...</div>
-<div *ngIf="error">{{ error }}</div>
-
-<div *ngIf="!editing && !loading">
+<!-- Vista en modo lectura -->
+<div *ngIf="!editing">
   <p><strong>Title:</strong> {{ book.title }}</p>
   <p><strong>Author:</strong> {{ book.author }}</p>
   <p><strong>Year:</strong> {{ book.year }}</p>
@@ -35,6 +33,6 @@
     <input type="text" formControlName="genre" />
   </label>
 
-  <button type="submit" [disabled]="form.invalid"> Save</button>
-  <button type="button" (click)="toggleEdit()"> Cancel</button>
+  <button type="submit" [disabled]="form.invalid">Save</button>
+  <button type="button" (click)="toggleEdit()">Cancel</button>
 </form>

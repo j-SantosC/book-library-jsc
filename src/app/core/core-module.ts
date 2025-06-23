@@ -8,6 +8,7 @@ import { InMemoryBookService } from './services/in-memory-book-service';
   declarations: [],
   imports: [CommonModule],
   providers: [{ provide: IBookService, useClass: HttpBookService }],
+  // providers: [{ provide: IBookService, useClass: InMemoryBookService }],
 })
 export class CoreModule {
   constructor(@Optional() @SkipSelf() parentModule: CoreModule) {

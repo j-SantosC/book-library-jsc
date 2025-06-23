@@ -1,27 +1,34 @@
-<h2>Book Library JSC</h2>
+<h2 class="header">Book Library JSC</h2>
 
-<div *ngIf="loading">Loading books...</div>
 <div *ngIf="error">{{ error }}</div>
 
-<div *ngIf="!loading && books.length" class="book-list">
-  <div class="book-card" *ngFor="let book of books">
-    <img class="book-cover" src="images/book.webp" alt="Book cover" />
+<ng-container *ngIf="(books$ | async) as books; else loading">
+  <div *ngIf="books.length > 0; else noBooks" class="book-list">
+    <div class="book-card" *ngFor="let book of books">
+      <img class="book-cover" src="images/book.webp" alt="Book cover" />
 
-    <div class="book-info">
-      <h3>{{ book.title }}</h3>
-      <p><strong>Author:</strong> {{ book.author }}</p>
-      <p><strong>Year:</strong> {{ book.year }}</p>
-      <p><strong>Genre:</strong> {{ book.genre }}</p>
-    </div>
+      <div class="book-info">
+        <h3>{{ book.title }}</h3>
+        <p><strong>Author:</strong> {{ book.author }}</p>
+        <p><strong>Year:</strong> {{ book.year }}</p>
+        <p><strong>Genre:</strong> {{ book.genre }}</p>
+      </div>
 
-    <div class="book-actions">
-      <button (click)="toDetail(book.id)">Detail</button>
-      <button (click)="deleteBook(book.id)">Delete</button>
+      <div class="book-actions">
+        <button (click)="toDetail(book.id)">Detail</button>
+        <button (click)="deleteBook(book.id)">Delete</button>
+      </div>
     </div>
   </div>
-</div>
+</ng-container>
+
+<ng-template #loading>
+  <p>Loading books...</p>
+</ng-template>
+
+<ng-template #noBooks>
+  <p>No books found.</p>
+</ng-template>
 
 <br />
-<button (click)="router.navigate(['/library/add'])">+ Add Book</button>
-
-<div *ngIf="!loading && !books.length">No books found.</div>
+<button class="add" (click)="router.navigate(['/library/add'])">+ Add Book</button>
