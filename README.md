@@ -22,6 +22,7 @@ npm install
 ```
 
 ### 2. Run the Angular App
+
 ```bash
 ng serve
 ```
@@ -55,6 +56,7 @@ And comment/uncomment the desired line inside the providers array:
 ```ts
 // Use HTTP (with json-server)
 providers: [{ provide: IBookService, useClass: HttpBookService }],
+
 // Use in-memory (local data)
 // providers: [{ provide: IBookService, useClass: InMemoryBookService }],
 ```

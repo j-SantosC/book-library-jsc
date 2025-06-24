@@ -9,7 +9,7 @@ const routes: Routes = [
   {
     path: 'detail/:id',
     component: BookDetail,
-    resolve: { book: BookResolver }, // 👈 Aquí
+    resolve: { book: BookResolver },
   },
   { path: 'add', component: AddBook },
   { path: '', component: BookList },

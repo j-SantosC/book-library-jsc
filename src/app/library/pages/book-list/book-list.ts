@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { IBook } from '../../../core/models/book.model';
@@ -13,14 +13,15 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './book-list.html',
   styleUrls: ['./book-list.scss'],
 })
-export class BookList {
-  books$: Observable<IBook[]>;
+export class BookList implements OnInit {
+  books$!: Observable<IBook[]>;
   error = '';
 
-  constructor(private bookService: IBookService, public router: Router, private http: HttpClient) {
+  constructor(private bookService: IBookService, public router: Router, private http: HttpClient) {}
+
+  ngOnInit(): void {
     this.books$ = this.bookService.getBooks();
   }
-
   toDetail(id: string): void {
     this.router.navigate(['/library/detail', id]);
   }
@@ -30,7 +31,7 @@ export class BookList {
       this.bookService.deleteBook(id).subscribe({
         next: () => {
           alert('Book deleted!');
-          this.books$ = this.bookService.getBooks(); // recarga tras borrar
+          this.books$ = this.bookService.getBooks();
         },
         error: () => {
           alert('Failed to delete book');

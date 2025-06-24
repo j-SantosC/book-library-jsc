@@ -1,16 +1,22 @@
 <h2 class="header">Book Detail</h2>
 
-<button (click)="goBack()">Back to list</button>
+<div *ngIf="!editing" class="card">
+  <div class="card-content">
+    <div class="book-info">
+      <p><strong>Title:</strong> {{ book.title }}</p>
+      <p><strong>Author:</strong> {{ book.author }}</p>
+      <p><strong>Year:</strong> {{ book.year }}</p>
+      <p><strong>Genre:</strong> {{ book.genre }}</p>
 
-<!-- Vista en modo lectura -->
-<div *ngIf="!editing">
-  <p><strong>Title:</strong> {{ book.title }}</p>
-  <p><strong>Author:</strong> {{ book.author }}</p>
-  <p><strong>Year:</strong> {{ book.year }}</p>
-  <p><strong>Genre:</strong> {{ book.genre }}</p>
+      <div class="button-row">
+        <button (click)="toggleEdit()">Edit</button>
+      </div>
+    </div>
 
-  <button (click)="toggleEdit()">Edit</button>
+    <img src="images/book.webp" alt="Book cover" class="book-image" />
+  </div>
 </div>
+<button class="back" (click)="goBack()">Back to list</button>
 
 <form *ngIf="editing" [formGroup]="form" (ngSubmit)="onSubmit()">
   <label>
@@ -33,6 +39,8 @@
     <input type="text" formControlName="genre" />
   </label>
 
-  <button type="submit" [disabled]="form.invalid">Save</button>
-  <button type="button" (click)="toggleEdit()">Cancel</button>
+  <div class="button-row">
+    <button type="submit" [disabled]="form.invalid">Save</button>
+    <button type="button" (click)="toggleEdit()">Cancel</button>
+  </div>
 </form>

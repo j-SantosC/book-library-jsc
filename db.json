@@ -1,31 +1,31 @@
 {
   "books": [
     {
-      "title": "The Hobbit 2",
+      "title": "The Hobbit",
       "author": "J.R.R. Tolkien",
       "year": 1937,
-      "genre": "Fantasy Great",
+      "genre": "Fantasy",
       "id": "3"
     },
     {
-      "id": "4",
-      "title": "After Dark",
+      "title": "After Dark ",
       "author": "Murakami",
       "year": 1987,
-      "genre": "Realism"
+      "genre": "Realism",
+      "id": "4"
     },
     {
       "title": "Don Quijote de la Mancha",
       "author": "Cervantes",
-      "year": 1600,
-      "genre": "Comedy",
+      "year": 1634,
+      "genre": "Classic Comedy",
       "id": "5"
     },
     {
-      "title": "Ceguera",
+      "title": "Ensayo sobre la ceguera",
       "author": "Saramago",
-      "year": 2332,
-      "genre": "Terrror",
+      "year": 1945,
+      "genre": "Terror",
       "id": "d9f5"
     }
   ]
