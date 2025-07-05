@@ -6,7 +6,7 @@ import { IBook } from '../models/book.model';
 
 @Injectable()
 export class HttpBookService implements IBookService {
-  private baseUrl = 'http://localhost:3000/books'; // json-server
+  private baseUrl = 'http://localhost:5080/api/books'; // json-server
 
   constructor(private http: HttpClient) {}
 
